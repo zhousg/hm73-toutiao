@@ -53,7 +53,7 @@
           </template>
         </el-table-column>
         <el-table-column label="标题" prop="title"></el-table-column>
-        <el-table-column label="状态" prop="status">
+        <el-table-column label="状态" >
           <template slot-scope="scope">
             <el-tag v-if="scope.row.status===0" type="info">草稿</el-tag>
             <el-tag v-if="scope.row.status===1">待审核</el-tag>
