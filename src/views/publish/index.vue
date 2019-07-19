@@ -85,7 +85,22 @@ export default {
     // 什么时候执行 组件的初始化之后调用
     this.articleId = this.$route.query.id
     // 获取文章数据
-    this.getArticle(this.articleId)
+    this.articleId && this.getArticle(this.articleId)
+  },
+  watch: {
+    $route () {
+      this.articleId = this.$route.query.id
+      this.articleForm = {
+        title: '',
+        content: '',
+        cover: {
+          type: 1,
+          // 单图  三图
+          images: []
+        },
+        channel_id: null
+      }
+    }
   },
   methods: {
     async getArticle (id) {
