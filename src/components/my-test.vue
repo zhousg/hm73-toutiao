@@ -12,7 +12,6 @@
         <template v-slot:con="scope">内容2 {{scope.test}}</template>
         <template slot="fot">底部2</template>
       </my-test>
-
    -->
 </template>
 
