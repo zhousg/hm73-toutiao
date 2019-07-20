@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="article-container">
     <el-card>
       <div slot="header">
         <my-bread>{{articleId?'修改文章':'发布文章'}}</my-bread>
@@ -86,10 +86,16 @@ export default {
     this.articleId = this.$route.query.id
     // 获取文章数据
     this.articleId && this.getArticle(this.articleId)
+    // if (this.articleId) {
+    //   this.getArticle(this.articleId)
+    // }
   },
   watch: {
     $route () {
-      this.articleId = this.$route.query.id
+      // 把编辑状态改成发布状态
+      // 表单内容重置  把ID重置
+      this.articleId = null
+      // 不能重置为 null {}  因为：null.title 报错  {}.cover.type 报错
       this.articleForm = {
         title: '',
         content: '',
@@ -129,4 +135,18 @@ export default {
 }
 </script>
 
-<style scoped lang='less'></style>
+<style scoped lang='less'>
+// 在组件暴露的标签 会加上一个属于当前组件的唯一标签 data-v-xxx
+// 而没在组件暴露的标签 也就其他组的标签 没有加上的唯一标识
+// style scoped 意思：当前组件下生效
+// .el-card ====> .el-card[data-v-xxx] 这是生成后的选择器
+// .el-card__header ====> .el-card__header[data-v-xxx]  这是生成后的选择器
+// 在全局定义：.el-card__header 选择器生效
+
+// .el-card{
+//   background: red;
+// }
+// .el-card__header{
+//   background: white;
+// }
+</style>
